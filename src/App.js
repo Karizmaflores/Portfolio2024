@@ -5,7 +5,10 @@ import Navbar from './components/Navbar'; /* imports Navbar component */
 import Hero from './components/HeroSection';
 import Skills from './components/Skills';
 import Education from './components/Education';
+import Experience from './components/Experience';
 import { BrowserRouter as Router } from 'react-router-dom';
+
+
 
 /* bg since util/themes/used bg */
 const Body = styled.div`
@@ -36,6 +39,7 @@ function App() {
         <Hero />
         <Wrapper> {/* notice skills placed in wrapper */}
           <Skills />
+          <Experience />
           <Education />
         </Wrapper>
       </Body>
