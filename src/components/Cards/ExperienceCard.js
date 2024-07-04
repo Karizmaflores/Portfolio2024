@@ -2,6 +2,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Document = styled.img`
+    display: none;
+    height: 70px;
+    width: fit-content;
+    background-color: #000;
+    border-radius: 10px;
+
+    &:hover {
+        cursor: pointer;
+        opacity?:0.8;
+    }
+`;
+
 const Card = styled.div`
     width: 650px;
     border-radius: 10px;
@@ -19,6 +32,10 @@ const Card = styled.div`
     &:hover{
         box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
         transform: translateY(-5px);
+    }
+
+    &:hover ${Document} {
+        display: flex;
     }
     
     @media (max-width: 768px) {
@@ -84,6 +101,43 @@ const Duration = styled.div`
     }
     `;
 
+const Description = styled.div`
+    width: 100%;
+    font-size: 15px;
+    font-weight: 400;
+    color: ${({ theme }) => theme.text_primary + 99};
+    margin-bottom: 10px;
+
+    @media (max-width: 768px) {
+    font-size: 12px;
+    }
+`;
+
+const Skills = styled.div`
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+`;
+
+const ItemWrapper = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+`;
+
+const Skill = styled.div`
+    font-size: 15px;
+    font-weight: 400;
+    color: ${({ theme }) => theme.text_primary + 99};
+
+    @media (max-width: 768px) {
+    font-size: 12px;
+    }
+`;
+
+
+
 const ExperienceCard = ({ experience }) => {
   return (
    <Card>
@@ -95,14 +149,29 @@ const ExperienceCard = ({ experience }) => {
             <Duration>{experience.date}</Duration>
         </Body>
     </Top>
-    {/* <Description></Description>
+     <Description>
+        {experience.desc}
+        {experience?.skills && (
+        <>
+        <br />
+        <Skills>
+            <b>Skills:</b>
+            <ItemWrapper>
+                {experience.skills.map((skill) => (
+                    <Skill>{skill}</Skill>
+                ))}
+            </ItemWrapper>
+        </Skills>
+        </>
+    )} 
+    </Description>
     {experience.doc && (
         <a href={experience.doc} target="new">
-            <Document />
+            <Document src={experience.doc}/>
         </a>
-    )} */}
+    )}
    </Card>
-  )
-}
+  );
+};
 
-export default ExperienceCard
+export default ExperienceCard;
