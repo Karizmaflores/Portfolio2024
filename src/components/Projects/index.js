@@ -1,17 +1,25 @@
 import React from 'react';
+import { useState } from 'react';
 import styled from "styled-components";
+import ProjectCard from '../Cards/ProjectCard';
+import { projects } from '../../data/constants';
 
 const Container = styled.div`
+    background: linear-gradient(343.07deg, 
+    rgba(132, 59, 206, 0.06) 5.71%.
+    rgba(132, 59, 206, 0) 64.83%
+    );
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: relative;
     z-index: 1;
     align-items: center;
-    `;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 98%, 0 100%);
+`;
 
 const Wrapper = styled.div`
-    width: 100%;
+    width: 1350px;
     max-width: 1100px;
     position: relative;
     display: flex;
@@ -20,6 +28,7 @@ const Wrapper = styled.div`
     align-items: center;
     width: 100%;
     gap: 12px;
+    padding: 10px 0px 100px 0;
 
     @media (max-width: 960px) {
         flex-direction: column;
@@ -85,6 +94,19 @@ const ToggleButton = styled.div`
 }
 `;
 
+const Divider = styled.div`
+    width: 1.5px;
+    background-color: ${({ theme }) => theme.primary};
+`;
+
+const CardContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 28px;
+`;
+
 const Projects = () => {
 const [toggle, setToggle] = useState("all");
   return <Container id="projects">
@@ -114,9 +136,19 @@ const [toggle, setToggle] = useState("all");
             </ToggleButton>
             )}
         </ToggleGroup>
+
+        <CardContainer>
+            {toggle === "all" && 
+                projects.map((project) => <ProjectCard project={project} />)} 
+            {projects
+            .filter((item) => item.category === toggle)
+            .map((project) => (
+                <ProjectCard project={project} />
+            ))}
+        </CardContainer>
     </Wrapper>
 
   </Container>
 };
 
-export default Projects
+export default Projects;
