@@ -6,8 +6,8 @@ import Hero from './components/HeroSection';
 import Skills from './components/Skills';
 import Education from './components/Education';
 import Experience from './components/Experience';
+import Projects from './components/Projects';
 import { BrowserRouter as Router } from 'react-router-dom';
-
 
 
 /* bg since util/themes/used bg */
@@ -40,8 +40,8 @@ function App() {
         <Wrapper> {/* notice skills placed in wrapper */}
           <Skills />
           <Experience />
-          <Education />
         </Wrapper>
+        <Projects />
       </Body>
       </Router>
     </ThemeProvider>
